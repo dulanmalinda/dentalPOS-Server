@@ -1,7 +1,7 @@
 module.exports = (mongoose) => {
 
     autoIncrement = require('mongoose-auto-increment')
-    const dbLinks = require("../config/db.config.js")
+    const dbLinks = require("../config/db.config")
     var connection = mongoose.createConnection(dbLinks.url, {
         useNewUrlParser: true,
         useUnifiedTopology: true
