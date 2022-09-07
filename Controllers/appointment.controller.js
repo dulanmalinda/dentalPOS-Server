@@ -3,7 +3,7 @@ const Appointment = db.appointment
 const axios = require('axios')
 
 
-const dbLinks = require("../config/db.config")
+const dbLinks = require("../Config/db.config")
 const { appointment } = require("../Models")
 
 require('dotenv').config();
