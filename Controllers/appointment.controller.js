@@ -3,7 +3,7 @@ const Appointment = db.appointment
 const axios = require('axios')
 
 
-const dbLinks = require("../Config/db.config")
+const dbLinks = require("../config/db.config")
 const { appointment } = require("../Models")
 
 require('dotenv').config();
@@ -18,6 +18,7 @@ exports.create = (req, res) => {
         nic : req.body.nic,
         address : req.body.address,
         treatment : req.body.treatment,
+        dob :req.body.dob,
         amount : req.body.amount,
         attended : false,
         doctor : req.body.doctor,
@@ -259,6 +260,27 @@ exports.appointmentRevenue = (req, res) => {
         .catch((err) => {
             res.status(500).send({
                 message: err.message || "Some error with report"
+            })
+        })
+} 
+
+exports.editAppbyDob = (req,res) =>{
+    const id = req.params.aId
+    const dob = req.params.dob
+
+    Appointment.findOneAndUpdate({ _id: id }, { $set: { nic: dob } })
+        .then(data => {
+
+            if (data) {
+                res.send(true);
+
+            } else res.status(404).send({
+                message: `Cannot update appointment with price=${dob}. Maybe appointment was not found!`,
+            });
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error updating appointment with dob=" + dob
             })
         })
 }

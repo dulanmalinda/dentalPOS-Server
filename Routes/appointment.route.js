@@ -21,6 +21,8 @@ module.exports = (app) => {
 
     router.put("/updateattend/:aId/:amount",appointment.updateTheAttendedStatus)
 
+    router.put("/updatedob/:aId/:dob",appointment.editAppbyDob)
+
     router.get("/allattended",appointment.findAllAttended)
 
    // router.put("/:iId/:amount", appointment.updateAmountById)

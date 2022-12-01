@@ -11,32 +11,30 @@ module.exports = (mongoose) => {
     var schema = mongoose.Schema({
 
         patName: String,
+        patId: Number,
+        address: String,
         phoneNumber: String,
-        appId : Number,
-        date: Date,
-        doctor :["Doc 1", "Doc 2", "Doc 3"],
-        nic : String,
-        address : String,
-        treatment : String,
-        dob : Date,
-        amount : Number,
-        attended: Boolean,
+        dob: Date,
+        treatment: String,
+        plateNumber: Number,
+        socialHistory: String,
+        fee: Number,
         _active: Boolean
     })
 
     schema.plugin(autoIncrement.plugin, {
-        model: 'Appointment',
-        field: 'appId',
+        model: 'Patient',
+        field: 'patId',
         startAt: 10000,
         incrementBy: 1
     });
 
     schema.method("toJSON", function() {
         const { __v, _id, ...object } = this.toObject()
-        object.aId = _id
+        object.iId = _id
         return object
     })
 
-    const Appointment = mongoose.model("Appointment", schema, "Appointment")
-    return Appointment
+    const Patient = mongoose.model("Patient", schema, "Patient")
+    return Patient
 }
